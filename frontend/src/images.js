@@ -1,0 +1,5 @@
+export const d4Image = 'https://cdn.dukegames.com.tw/comm/upimage/p_200820_06497.jpg'
+export const d6Image = 'https://www.ludeka.com.br/image/cache/data/componentes/D-06/d6-26mm-vermelho-trans-800x800.jpg'
+export const d9Image = 'https://www.ludeka.com.br/image/cache/data/componentes/D-10/DD_RPG_10%20lados_Azul%20Transparente-800x800.jpg'
+export const d20Image = 'https://cdn.awsli.com.br/300x300/479/479931/produto/112679659/c844c5872a.jpg'
+export const d100Image = 'https://m.media-amazon.com/images/I/71YZnvFnVVL._AC_SX425_.jpg'
