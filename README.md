@@ -25,6 +25,9 @@ A aplicação foi contruida em JavaScript, sendo o FrameWork React para o front 
 5. Na pasta backend de o seguinte comando `npm run dev`.
 6. Na pasta frontend de o seguinte comando `npm start`. Logo em seguida você será redirecionado para o App.
 
+## Rodando os testes em Jest
+1. Entre na pasta backend.
+2. Rode o comando `npm test`.
 
 ## :copyright: Direitos Autorais
 Este projeto foi desenvolvido por Lucas Coelho. É permitido baixar ou clonar o repositório para fins de estudo, porém não é permitida a publicação de cópias totais ou parciais do mesmo. Esta isenção de responsabilidade não abrange bibliotecas e dependências, que estão sujeitas às suas respectivas licenças.
