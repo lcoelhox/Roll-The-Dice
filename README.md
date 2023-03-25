@@ -26,7 +26,12 @@ A aplicação foi contruida em JavaScript, sendo o FrameWork React para o front 
 6. Na pasta frontend de o seguinte comando `npm start`. Logo em seguida você será redirecionado para o App.
 
 ## Rodando os testes em Jest
-1. Entre na pasta backend.
+- Back-End
+1. Entre na pasta /backend.
+2. Rode o comando `npm test`.
+
+- Front-End
+1. Entre na pasta /frontend.
 2. Rode o comando `npm test`.
 
 ## :copyright: Direitos Autorais
