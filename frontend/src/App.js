@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './styles/App.css';
 import { d4Image, d6Image, d9Image, d20Image, d100Image } from './images';
@@ -6,9 +6,15 @@ import { d4Image, d6Image, d9Image, d20Image, d100Image } from './images';
 function App() {
   const [sides, setSides] = useState(0);
   const [result, setResult] = useState(null);
-  const [history, setHistory] = useState([]);
   const [clicked, setClicked] = useState(null);
   const [isHistoryCleared, setIsHistoryCleared] = useState(false);
+  const [history, setHistory] = useState(
+    JSON.parse(localStorage.getItem('history')) || []
+  );
+
+  useEffect(() => {
+    localStorage.setItem('history', JSON.stringify(history));
+  }, [history]);
 
   // Atualiza o estado quando o botão é clicado
   const handleButtonClick = (sides) => {
@@ -24,6 +30,10 @@ function App() {
       setResult(res.data.result);
       setHistory([...history, res.data.result]);
       setIsHistoryCleared(false);
+      localStorage.setItem(
+        'history',
+        JSON.stringify([...history, res.data.result])
+      );
     } catch (error) {
     
     }
@@ -32,10 +42,11 @@ function App() {
   // Limpa o historico dos dados já rolados
   const handleClearHistory = () => {
     setHistory([]);
+    localStorage.removeItem('history');
     setIsHistoryCleared(true);
   };
 
-  // Renderiza os dados
+  // Renderiza os botões de dados
   const renderButtonsDice = (sides, image) => {
     const isActiveValidation = clicked === sides;
     const buttonClasses = `btn btn-primary ${isActiveValidation ? 'btn-clicked' : ""}`;
@@ -52,6 +63,7 @@ function App() {
     if (history.length === 0 || isHistoryCleared) {
       return null;
     }
+
     return (
       <div className="roll-history">
         <div className="h2-roll-history">
