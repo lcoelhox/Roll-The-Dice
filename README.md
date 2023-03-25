@@ -23,7 +23,7 @@ A aplicação foi contruida em JavaScript, sendo o FrameWork React para o front 
 3. Se não estiver na versão 16 basta usar o comando: `nvm use 16`.
 4. Instale as dependicias com `npm install` na pasta /backend, logo em seguida repita a mesma ação na pasta /frontend.
 5. Na pasta backend de o seguinte comando `npm run dev`.
-6. Na pasta frontend de o seguinte comando `npm start`. Logo em seguida você será redirecionado para o App.
+6. Na pasta frontend de o seguinte comando `npm start`. Logo em seguida você será redirecionado para o site.
 
 ## Rodando os testes em Jest
 - Back-End
