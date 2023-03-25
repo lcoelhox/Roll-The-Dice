@@ -1,46 +1,58 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import axios from 'axios';
 import App from '../App';
 
-describe('App', () => {
-  it('renders the dice buttons and roll button', () => {
+// Mock do axios para evitar chamadas à API real
+jest.mock('axios');
+
+describe('Testing App component', () => {
+  test('Render buttons sucess', () => {
     render(<App />);
 
-    expect(screen.getByAltText('D4')).toBeInTheDocument();
-    expect(screen.getByAltText('D6')).toBeInTheDocument();
-    expect(screen.getByAltText('D9')).toBeInTheDocument();
-    expect(screen.getByAltText('D20')).toBeInTheDocument();
-    expect(screen.getByAltText('D100')).toBeInTheDocument();
-    expect(screen.getByText('Roll')).toBeInTheDocument();
+    expect(screen.getByText('D4')).toBeInTheDocument();
+    expect(screen.getByText('D6')).toBeInTheDocument();
+    expect(screen.getByText('D9')).toBeInTheDocument();
+    expect(screen.getByText('D20')).toBeInTheDocument();
+    expect(screen.getByText('D100')).toBeInTheDocument();
   });
 
-  it('changes the selected dice and shows the dice image when the dice buttons are clicked', () => {
-    render(<App />);
-
-    fireEvent.click(screen.getByAltText('D4'));
-    expect(screen.getByAltText('D4')).toHaveClass('active');
-    fireEvent.click(screen.getByAltText('D6'));
-    expect(screen.getByAltText('D6')).toHaveClass('active');
-    fireEvent.click(screen.getByAltText('D20'));
-    expect(screen.getByAltText('D20')).toHaveClass('active');
-  });
-
-  it('rolls the dice and shows the result when the roll button is clicked', async () => {
-    const mockRollResponse = { data: { result: 10 } };
-    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
-      json: jest.fn().mockResolvedValueOnce(mockRollResponse),
-    });
+  test('clicking on the button to roll a dice calls the API and displays the result', async () => {
+    axios.post.mockResolvedValueOnce({ data: { result: 5 } });
 
     render(<App />);
 
-    fireEvent.click(screen.getByAltText('D4'));
+    fireEvent.click(screen.getByText('D6'));
     fireEvent.click(screen.getByText('Roll'));
 
-    await screen.findByText('Result: 10');
-    expect(screen.getByText('Result: 10')).toHaveClass('roll-result');
-    expect(screen.getByText('Result 1: 10')).toBeInTheDocument();
+    expect(await screen.findByText('Result: 5')).toBeInTheDocument();
+    expect(axios.post).toHaveBeenCalledWith('http://localhost:3001/roll', { sides: 6 });
+  });
 
-    // Limpando o mock
-    global.fetch.mockRestore();
+  test('displays rolled dice history', async () => {
+    axios.post.mockResolvedValueOnce({ data: { result: 2 } });
+
+    render(<App />);
+
+    fireEvent.click(screen.getByText('D4'));
+    fireEvent.click(screen.getByText('Roll'));
+
+    expect(await screen.findByText('Result: 2')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText('D6'));
+    fireEvent.click(screen.getByText('Roll'));
+
+    expect(await screen.findByText('Result: 2')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText('D9'));
+    fireEvent.click(screen.getByText('Roll'));
+
+    expect(await screen.findByText('Result: 2')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText('Clear'));
+
+    expect(screen.queryByText('Result 1: 2')).not.toBeInTheDocument();
+    expect(screen.queryByText('Result 2: 2')).not.toBeInTheDocument();
+    expect(screen.queryByText('Result 3: 2')).not.toBeInTheDocument();
   });
 });

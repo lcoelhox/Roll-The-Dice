@@ -10,12 +10,14 @@ function App() {
   const [clicked, setClicked] = useState(null);
   const [isHistoryCleared, setIsHistoryCleared] = useState(false);
 
+  // Atualiza o estado quando o botão é clicado
   const handleButtonClick = (sides) => {
     setSides(sides);
     setClicked(sides);
     setIsHistoryCleared(false);
   };
 
+  // Faz a requisição para a api, recebe a resposta com o resultado do lançamento de um dado e atualiza o estado
   const rollDice = async () => {
     try {
       const res = await axios.post('http://localhost:3001/roll', { sides });
@@ -27,12 +29,14 @@ function App() {
     }
   };
 
+  // Limpa o historico dos dados já rolados
   const handleClearHistory = () => {
     setHistory([]);
     setIsHistoryCleared(true);
   };
 
-  const renderButtons = (sides, image) => {
+  // Renderiza os dados
+  const renderButtonsDice = (sides, image) => {
     const isActiveValidation = clicked === sides;
     const buttonClasses = `btn btn-primary ${isActiveValidation ? 'btn-clicked' : ""}`;
     return (
@@ -43,6 +47,7 @@ function App() {
     );
   };
 
+  // Renderiza o historico de dados rolados
   const renderRollHistory = () => {
     if (history.length === 0 || isHistoryCleared) {
       return null;
@@ -73,11 +78,11 @@ function App() {
     <div className="container">
       <h1>Roll the Dice</h1>
       <div className="container-buttons">
-        {renderButtons(4, d4Image)}
-        {renderButtons(6, d6Image)}
-        {renderButtons(9, d9Image)}
-        {renderButtons(20, d20Image)}
-        {renderButtons(100, d100Image)}
+        {renderButtonsDice(4, d4Image)}
+        {renderButtonsDice(6, d6Image)}
+        {renderButtonsDice(9, d9Image)}
+        {renderButtonsDice(20, d20Image)}
+        {renderButtonsDice(100, d100Image)}
       </div>
       <button
         className="btn btn-success"
