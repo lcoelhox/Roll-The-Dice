@@ -2,7 +2,7 @@ const request = require('supertest');
 const { expect } = require('chai');
 const app = require('../api/app');
 
-describe('testing app', () => {
+describe('testing back-end', () => {
   it('returns a 201 response', () => {
     return request(app)
       .post('/roll')
