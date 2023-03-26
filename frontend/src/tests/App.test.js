@@ -3,10 +3,13 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import axios from 'axios';
 import App from '../App';
 
-// Mock do axios para evitar chamadas à API real
 jest.mock('axios');
 
 describe('Testing App component', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+  
   test('Render buttons sucess', () => {
     render(<App />);
 

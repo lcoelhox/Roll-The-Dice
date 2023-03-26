@@ -16,14 +16,12 @@ function App() {
     localStorage.setItem('history', JSON.stringify(history));
   }, [history]);
 
-  // Atualiza o estado quando o botão é clicado
   const handleButtonClick = (sides) => {
     setSides(sides);
     setClicked(sides);
     setIsHistoryCleared(false);
   };
 
-  // Faz a requisição para a api, recebe a resposta com o resultado do lançamento de um dado e atualiza o estado
   const rollDice = async () => {
     try {
       const res = await axios.post('http://localhost:3001/roll', { sides });
@@ -39,14 +37,12 @@ function App() {
     }
   };
 
-  // Limpa o historico dos dados já rolados
   const handleClearHistory = () => {
     setHistory([]);
     localStorage.removeItem('history');
     setIsHistoryCleared(true);
   };
 
-  // Renderiza os botões de dados
   const renderButtonsDice = (sides, image) => {
     const isActiveValidation = clicked === sides;
     const buttonClasses = `btn btn-primary ${isActiveValidation ? 'btn-clicked' : ""}`;
@@ -58,7 +54,6 @@ function App() {
     );
   };
 
-  // Renderiza o historico de dados rolados
   const renderRollHistory = () => {
     if (history.length === 0 || isHistoryCleared) {
       return null;
