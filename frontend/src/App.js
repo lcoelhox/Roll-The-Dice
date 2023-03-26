@@ -8,6 +8,7 @@ function App() {
   const [result, setResult] = useState(null);
   const [clicked, setClicked] = useState(null);
   const [isHistoryCleared, setIsHistoryCleared] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
   const [history, setHistory] = useState(
     JSON.parse(localStorage.getItem('history')) || []
   );
@@ -20,6 +21,7 @@ function App() {
     setSides(sides);
     setClicked(sides);
     setIsHistoryCleared(false);
+    setButtonDisabled(false);
   };
 
   const rollDice = async () => {
@@ -37,12 +39,6 @@ function App() {
     }
   };
 
-  const handleClearHistory = () => {
-    setHistory([]);
-    localStorage.removeItem('history');
-    setIsHistoryCleared(true);
-  };
-
   const renderButtonsDice = (sides, image) => {
     const isActiveValidation = clicked === sides;
     const buttonClasses = `btn btn-primary ${isActiveValidation ? 'btn-clicked' : ""}`;
@@ -52,6 +48,13 @@ function App() {
         <img src={image} alt={`D${sides}`} />
       </button>
     );
+  };
+
+  const handleClearHistory = () => {
+    setHistory([]);
+    setResult(null);
+    localStorage.removeItem('history');
+    setIsHistoryCleared(true);
   };
 
   const renderRollHistory = () => {
@@ -94,10 +97,15 @@ function App() {
       <button
         className="btn btn-success"
         id="btn6"
-        onClick={rollDice}>
-        Roll
+        disabled={buttonDisabled}
+        onClick={rollDice}
+        > Roll
       </button>
-      {result && <h3 className="roll-result"><b>Result: {result}</b></h3>}
+        {result ? (
+          <h3 className="roll-result"><b>Result: {result}</b></h3>
+          ) : (
+          <h3 className="roll-result"><b>No result</b></h3>
+        )}
       {renderRollHistory()}
     </div>
     );
