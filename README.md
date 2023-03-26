@@ -14,8 +14,8 @@ A aplicação foi contruida em JavaScript, sendo o FrameWork React para o front 
 ## Testando com Docker :whale2:
 1. Clone o repositório `git@github.com:lcoelhox/Roll-The-Dice.git`
 2. Instale as dependicias com `npm install` na pasta /backend, logo em seguida repita a mesma ação na pasta /frontend.
-3. Volte até a pasta raiz do projeto, e de o comando `docker-compose up -d`, com esse comando ira subir 2 containers, um back-end e um do front-end
-4. Acesse o endereço http://localhost:3000 para visualizar o App ou clique com o botão direito no container do frontend e clique em "Open in Browser".
+3. Volte até a pasta raiz do projeto, e de o comando `docker-compose up -d`, com esse comando ira subir 2 containers, um back-end e um do front-end. (OBS: Os container do Fast-Double-Click estão com o mesmo nome, em caso de erro é só dar um compose down no outro container)
+4. Acesse o endereço http://localhost:3000 para visualizar o site, ou caso tenha a extensão do docker clique com o botão direito no container do frontend e clique em "Open in Browser".
 
 ## Testando localmente
 1. Clone o repositório `git@github.com:lcoelhox/Roll-The-Dice.git`.
