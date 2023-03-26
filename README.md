@@ -1,5 +1,8 @@
 # Boas vindas ao repositório Roll The Dice! :game_die:
 
+## Deploy em Railway
+- https://roll-the-dice.up.railway.app/
+
 ## Sobre
 Desafio técnico de uma aplicação Fullstack onde simula dados de RPG, de até 100 lados!
 A aplicação foi contruida em JavaScript, sendo o FrameWork React para o front e NodeJS para o back, realizei os testes em Jest, e subi a aplicação em containers docker
