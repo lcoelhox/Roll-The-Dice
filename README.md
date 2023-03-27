@@ -22,10 +22,10 @@ A aplicação foi contruida em JavaScript, sendo o FrameWork React para o front 
 ## Executando localmente
 1. Clone o repositório `git@github.com:lcoelhox/Roll-The-Dice.git`.
 2. Certifique-se que o node está na versão 16 ou superior, com comando: `node -v`.
-3. Se não estiver na versão 16 basta usar o comando: `nvm use 16`.
-4. Instale as dependicias com `npm install` na pasta /backend, logo em seguida repita a mesma ação na pasta /frontend.
-5. Na pasta backend de o seguinte comando `npm run dev`.
-6. Na pasta frontend de o seguinte comando `npm start`. Logo em seguida você será redirecionado para o site.
+3. Se não estiver na versão 16 basta executar o comando: `nvm use 16`.
+4. Instale as dependência com `npm install` na pasta /backend, logo em seguida repita a mesma ação na pasta /frontend.
+5. Na pasta backend execute o seguinte comando `npm run dev`.
+6. Na pasta frontend execute o seguinte comando `npm start`. Logo em seguida você será redirecionado para o site.
 
 ## Rodando os testes em Jest
 - Back-End
