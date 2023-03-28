@@ -8,7 +8,12 @@ app.use(express.json());
 app.post('/roll', (req, res) => {
   const sides = req.body.sides;
   const result = Math.floor(Math.random() * sides) + 1;
-  res.status(201).json({ result });
+  try {
+    res.status(201).json({ result });
+  } catch (err) {
+    console.log(err)
+    res.status(500).send('Error')
+  }
 });
 
 module.exports = app;
